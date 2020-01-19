@@ -372,6 +372,13 @@ function Logon(u, p) {
     var sessionStorage = window.sessionStorage;
     var devicetype = DevExpress.devices.real().platform;
 
+    if (pushChn == "" && getCHNRetry < 3) {
+        getCHNRetry++;
+        setTimeout(function () {
+            Logon(u, p);
+        }, 1000);
+    }
+
     var postData = {
         UserName: u,
         Password: p,

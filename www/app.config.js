@@ -1,10 +1,11 @@
-var appVer = "3.6.6";
+var appVer = "3.6.7";
 var nullDeviceType = "PC";
 var asUserList = [];
 var pushChn = "";
 var deviceid = "";
 var serviceURL = "http://localhost:61862";
 var debugMode = true;
+var getCHNRetry = 0;
 
 //var serviceURL = "http://180.166.252.90:20191/WebAPITest";
 //var serviceURL = "http://58.221.237.66:8005/NBIWebAPI";

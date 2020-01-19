@@ -49,8 +49,13 @@
             height: "100%",
             grouped: false,
             scrollingEnabled: false,
-            allowItemDeleting:true,
-            itemDeleteMode:"slideItem",
+            //allowItemDeleting:true,
+            itemDeleteMode: "slideItem",
+            onItemDeleted: function (e) {
+                var IDNUM = data.IDNUM;
+                var MAILTO = data.MAILTO;
+                SetNoticeRead(IDNUM, MAILTO);
+            },
             onItemClick: function (e) {
                 var data = e.itemData;
                 var func = data.FUNCID;
