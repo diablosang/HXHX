@@ -41,7 +41,8 @@
                 viewModel.versionChecked(true);
             }
 
-            if (params.auto != "0") {
+           
+            if (params.auto != "0" && this.username() != "") {
                 Logon(this.username(), this.password());
             }
         },
