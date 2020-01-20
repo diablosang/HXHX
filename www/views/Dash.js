@@ -49,9 +49,10 @@
             height: "100%",
             grouped: false,
             scrollingEnabled: false,
-            //allowItemDeleting:true,
+            allowItemDeleting:true,
             itemDeleteMode: "slideItem",
             onItemDeleted: function (e) {
+                var data = e.itemData;
                 var IDNUM = data.IDNUM;
                 var MAILTO = data.MAILTO;
                 SetNoticeRead(IDNUM, MAILTO);

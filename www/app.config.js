@@ -1,9 +1,9 @@
-var appVer = "3.6.7";
+var appVer = "3.6.8";
 var nullDeviceType = "PC";
 var asUserList = [];
 var pushChn = "";
 var deviceid = "";
-var serviceURL = "http://localhost:61862";
+var serviceURL = "http://218.104.52.26/AsapmentWebAPI";
 var debugMode = true;
 var getCHNRetry = 0;
 
