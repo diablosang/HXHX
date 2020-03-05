@@ -43,11 +43,11 @@
 
            
             if (params.auto != "0" && this.username() != "") {
-                Logon(this.username(), this.password());
+                Logon(this);
             }
         },
         onLoginClick: function () {
-            Logon(this.username(), this.password());
+            Logon(this);
         },
         settingClick: function (e) {
             Mobile.app.navigate("Config");

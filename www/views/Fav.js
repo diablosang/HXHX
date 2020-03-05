@@ -9,7 +9,7 @@
             var sessionStorage = window.sessionStorage;
             var u = sessionStorage.getItem("username");
             if (u == null) {
-                var view = "Login/0";
+                var view = "Login";
                 var option = { root: true };
                 Mobile.app.navigate(view, option);
                 return;

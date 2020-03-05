@@ -367,7 +367,11 @@ function OpenFile(fileID) {
     });
 }
 
-function Logon(u, p) {
+function Logon(viewModel) {
+    viewModel.indicatorVisible(true);
+    var u = viewModel.username();
+    var p = viewModel.password(), 
+
     serverVer = CheckServerVersion();
     var sessionStorage = window.sessionStorage;
     var devicetype = DevExpress.devices.real().platform;
@@ -375,8 +379,10 @@ function Logon(u, p) {
     if (pushChn == "" && getCHNRetry < 3) {
         getCHNRetry++;
         setTimeout(function () {
-            Logon(u, p);
+            Logon(viewModel);
         }, 1000);
+
+        return;
     }
 
     var postData = {
@@ -398,26 +404,24 @@ function Logon(u, p) {
         cache: false,
         async: false,
         success: function (data, textStatus) {
-            success = true;
+            sessionStorage.removeItem("username");
+            sessionStorage.setItem("username", u);
+            var localStorage = window.localStorage;
+            localStorage.setItem("username", u);
+            localStorage.setItem("password", p);
+            var view = "Dash";
+            var option = { root: true };
+            GetUserList(u);
+            GetUserRoles(u);
+
+            viewModel.indicatorVisible(false);
+            Mobile.app.navigate(view, option);
         },
         error: function (xmlHttpRequest, textStatus, errorThrown) {
-            success = false;
+            viewModel.indicatorVisible(false);
             ServerError(xmlHttpRequest.responseText);
         }
     });
-
-    if (success) {
-        sessionStorage.removeItem("username");
-        sessionStorage.setItem("username", u);
-
-        var localStorage = window.localStorage;
-        localStorage.setItem("username", u);
-        localStorage.setItem("password", p);
-        var view = "Dash";
-        var option = { root: true };
-        GetUserList(u);
-        Mobile.app.navigate(view, option);
-    }
 
     return success;
 }
@@ -455,6 +459,30 @@ function GetUserList(u) {
         },
         error: function (xmlHttpRequest, textStatus, errorThrown) {
             viewModel.indicatorVisible(false);
+            ServerError(xmlHttpRequest.responseText);
+        }
+    });
+}
+
+function GetUserRoles(u) {
+    var url = serviceURL + "/Api/Asapment/GetUserRoles";
+    var postData = {
+        userName: u
+    };
+
+    $.ajax({
+        type: 'POST',
+        data: postData,
+        url: url,
+        async: false,
+        cache: false,
+        success: function (data, textStatus) {
+            asRoles = [];
+            for (var i = 0; i < data.length; i++) {
+                asRoles.push(data[i].ROLEID);
+            }
+        },
+        error: function (xmlHttpRequest, textStatus, errorThrown) {
             ServerError(xmlHttpRequest.responseText);
         }
     });

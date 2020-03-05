@@ -21,7 +21,7 @@
             var sessionStorage = window.sessionStorage;
             var u = sessionStorage.getItem("username");
             if (u == null) {
-                var view = "Login/0";
+                var view = "Login";
                 var option = { root: true };
                 Mobile.app.navigate(view, option);
                 return;
@@ -137,6 +137,30 @@
 
                     }
                 });
+            }
+
+            if (asRoles.indexOf("TOP_GMAN") > -1) {
+                var postData = {
+                    userName: u,
+                    methodName: "SM.SD_R_SHPR.GetCurrentSOTP",
+                    param: ""
+                }
+                url = serviceURL + "/Api/Asapment/CallMethod";
+                $.ajax({
+                    type: 'POST',
+                    data: postData,
+                    url: url,
+                    cache: false,
+                    success: function (data, textStatus) {
+                        $("#marTop").text(data[0].MSG);
+                    },
+                    error: function (xmlHttpRequest, textStatus, errorThrown) {
+                        ServerError(xmlHttpRequest.responseText);
+                    }
+                });
+            }
+            else {
+                $("#marTop").hide();
             }
             
         }
