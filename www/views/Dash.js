@@ -46,7 +46,7 @@
         },
         listNoticeOptions:{
             dataSource: [],
-            height: "100%",
+            //height: "100%",
             grouped: false,
             scrollingEnabled: false,
             allowItemDeleting:true,
@@ -110,9 +110,14 @@
                 url: url,
                 cache: false,
                 success: function (data, textStatus) {
-                    $("#listDash").dxList({
-                        dataSource: data
+                    var ds = new DevExpress.data.DataSource({
+                        store: data,
+                        paginate: false
                     });
+
+                    var list = $("#listDash").dxList("instance");
+                    list.option("dataSource", ds);
+                    list.repaint();
                     viewModel.indicatorVisible(false);
                 },
                 error: function (xmlHttpRequest, textStatus, errorThrown) {
@@ -121,23 +126,28 @@
                 }
             });
 
-            if (serverVer >= 3)
-            {
-                var url2 = serviceURL + "/Api/Asapment/GetNoticeData?UserName=" + u;
-                $.ajax({
-                    type: 'GET',
-                    url: url2,
-                    cache: false,
-                    success: function (data, textStatus) {
-                        $("#listNotice").dxList({
-                            dataSource: data
-                        });
-                    },
-                    error: function (xmlHttpRequest, textStatus, errorThrown) {
+            var url2 = serviceURL + "/Api/Asapment/GetNoticeData?UserName=" + u;
+            $.ajax({
+                type: 'GET',
+                url: url2,
+                cache: false,
+                success: function (data, textStatus) {
+                    var ds= new DevExpress.data.DataSource({
+                        store: data,
+                        paginate: false
+                    });
 
-                    }
-                });
-            }
+                    var list = $("#listNotice").dxList("instance");
+                    list.option("dataSource", ds);
+                    list.repaint();
+                    //$("#listNotice").dxList({
+                    //    dataSource: data
+                    //});
+                },
+                error: function (xmlHttpRequest, textStatus, errorThrown) {
+
+                }
+            });
 
             if (asRoles.indexOf("TOP_GMAN") > -1) {
                 var postData = {
