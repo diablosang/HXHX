@@ -1,8 +1,8 @@
-﻿<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.hxhx.mobile" version="3.7.2" versionCode="">
+﻿<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.hxhx.mobile" version="3.8.0" versionCode="">
   <name>华西化纤</name>
   <description>华西化纤</description>
   <author email="dev@trusteem.com" href="http://www.trusteem.com.cn">Trusteem.com</author>
-  <preference name="phonegap-version" value="cli-8.0.0" />
+  <preference name="phonegap-version" value="cli-9.0.0" />
   <preference name="permissions" value="none" />
   <preference name="SplashScreen" value="splash" />
   <preference name="SplashScreenDelay" value="60000" />
