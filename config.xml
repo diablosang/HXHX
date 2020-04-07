@@ -1,4 +1,4 @@
-﻿<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.hxhx.mobile" version="3.8.0" versionCode="">
+﻿<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.hxhx.mobile" version="3.8.1" versionCode="">
   <name>华西化纤</name>
   <description>华西化纤</description>
   <author email="dev@trusteem.com" href="http://www.trusteem.com.cn">Trusteem.com</author>
@@ -17,16 +17,16 @@
   <access origin="*" />
   <!--<plugin spec="http://github.com/don/cordova-filechooser.git" source="git" />-->
   <plugin name="cordova-plugin-whitelist" />
-  <plugin name="cordova-plugin-splashscreen" onload="true" version="3.2.2"/>
+  <plugin name="cordova-plugin-splashscreen" onload="true" />
   <plugin name="cordova-plugin-ios-longpress-fix" />
   <plugin name="cordova-plugin-statusbar" onload="true" />
-  <plugin name="cordova-plugin-camera" spec="~4.0.3" />
+  <plugin name="cordova-plugin-camera" />
   <plugin name="phonegap-plugin-barcodescanner" />  
   <plugin name="jpush-phonegap-plugin">
     <param name="APP_KEY" value="cbb836728e7ec6484e053022" />
   </plugin>
   <plugin name="cordova-plugin-app-version" />
-  <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />
+  <plugin name="cordova-plugin-inappbrowser" />
   
   <icon src="res/icon/icon.png" />
   <platform name="ios">

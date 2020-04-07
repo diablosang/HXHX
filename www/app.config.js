@@ -1,4 +1,4 @@
-var appVer = "3.8.0";
+var appVer = "3.8.1";
 var nullDeviceType = "PC";
 var asUserList = [];
 var asRoles = [];
