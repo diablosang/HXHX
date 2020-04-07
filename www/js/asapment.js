@@ -370,11 +370,15 @@ function OpenFile(fileID) {
 function Logon(viewModel) {
     viewModel.indicatorVisible(true);
     var u = viewModel.username();
-    var p = viewModel.password(), 
+    var p = viewModel.password(),
 
-    serverVer = CheckServerVersion();
+    serverVer = 4;//CheckServerVersion();
     var sessionStorage = window.sessionStorage;
-    var devicetype = DevExpress.devices.real().platform;
+    var devicetype = "android";
+    try {
+        device.platform.toLowerCase();
+    }
+    catch(e){ }
 
     if (pushChn == "" && getCHNRetry < 3) {
         getCHNRetry++;
