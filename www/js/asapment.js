@@ -422,15 +422,16 @@ function Logon(viewModel) {
             Mobile.app.navigate(view, option);
         },
         error: function (xmlHttpRequest, textStatus, errorThrown) {
-            var msg = "";
-            if (xmlHttpRequest.responseText == null || xmlHttpRequest.responseText == "") {
-                msg = "error, " + url;
-            }
-            else {
-                msg = xmlHttpRequest.responseText;
-            }
-            viewModel.indicatorVisible(false);
-            ServerError(xmlHttpRequest.responseText);
+            ServerError(url);
+            //var msg = "";
+            //if (xmlHttpRequest.responseText == null || xmlHttpRequest.responseText == "") {
+            //    msg = "error, " + url;
+            //}
+            //else {
+            //    msg = xmlHttpRequest.responseText;
+            //}
+            //viewModel.indicatorVisible(false);
+            //ServerError(xmlHttpRequest.responseText);
         }
     });
 
