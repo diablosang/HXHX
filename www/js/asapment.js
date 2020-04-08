@@ -380,14 +380,14 @@ function Logon(viewModel) {
     }
     catch(e){ }
 
-    if (pushChn == "" && getCHNRetry < 3) {
-        getCHNRetry++;
-        setTimeout(function () {
-            Logon(viewModel);
-        }, 1000);
+    //if (pushChn == "" && getCHNRetry < 3) {
+    //    getCHNRetry++;
+    //    setTimeout(function () {
+    //        Logon(viewModel);
+    //    }, 1000);
 
-        return;
-    }
+    //    return;
+    //}
 
     var postData = {
         UserName: u,
