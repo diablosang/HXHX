@@ -23,7 +23,7 @@
 
       <div id="btnLogin" class="Login_Btn" data-bind="dxButton: { text: '登录',onClick:onLoginClick}"></div>
       <img src="images/setting.svg" class="Login_SettingImg" data-bind="click: settingClick"></img>
+      <div id="debugMsg" style="word-break: break-all;"></div>
     </div>
-    
   </div>
 </div>

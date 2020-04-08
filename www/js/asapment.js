@@ -424,7 +424,7 @@ function Logon(viewModel) {
         error: function (xmlHttpRequest, textStatus, errorThrown) {
             
             //ServerError(url);
-            var msg = url+String(xmlHttpRequest) + String(textStatus) + String(errorThrown);
+            var msg = url + String(xmlHttpRequest.responseText) + String(xmlHttpRequest.status) + String(xmlHttpRequest.statusText) + String(textStatus) + String(errorThrown);
             $("#debugMsg").text(msg);
             if (xmlHttpRequest.responseText == null || xmlHttpRequest.responseText == "") {
                 msg = "error, " + url;
