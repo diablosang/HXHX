@@ -380,14 +380,14 @@ function Logon(viewModel) {
     }
     catch(e){ }
 
-    //if (pushChn == "" && getCHNRetry < 3) {
-    //    getCHNRetry++;
-    //    setTimeout(function () {
-    //        Logon(viewModel);
-    //    }, 1000);
+    if (pushChn == "" && getCHNRetry < 3) {
+        getCHNRetry++;
+        setTimeout(function () {
+            Logon(viewModel);
+        }, 1000);
 
-    //    return;
-    //}
+        return;
+    }
 
     var postData = {
         UserName: u,
@@ -406,32 +406,29 @@ function Logon(viewModel) {
         url: url,
         data: postData,
         cache: false,
-        async: false,
         success: function (data, textStatus) {
             sessionStorage.removeItem("username");
             sessionStorage.setItem("username", u);
             var localStorage = window.localStorage;
             localStorage.setItem("username", u);
             localStorage.setItem("password", p);
-            var view = "Dash";
-            var option = { root: true };
+            
             GetUserList(u);
             GetUserRoles(u);
 
             viewModel.indicatorVisible(false);
-            Mobile.app.navigate(view, option);
         },
         error: function (xmlHttpRequest, textStatus, errorThrown) {
             
-            //ServerError(url);
-            var msg = url + String(xmlHttpRequest.responseText) + String(xmlHttpRequest.status) + String(xmlHttpRequest.statusText) + String(textStatus) + String(errorThrown);
-            $("#debugMsg").text(msg);
-            if (xmlHttpRequest.responseText == null || xmlHttpRequest.responseText == "") {
-                msg = "error, " + url;
-            }
-            else {
-                msg = xmlHttpRequest.responseText;
-            }
+            ////ServerError(url);
+            //var msg = url + String(xmlHttpRequest.responseText) + String(xmlHttpRequest.status) + String(xmlHttpRequest.statusText) + String(textStatus) + String(errorThrown);
+            //$("#debugMsg").text(msg);
+            //if (xmlHttpRequest.responseText == null || xmlHttpRequest.responseText == "") {
+            //    msg = "error, " + url;
+            //}
+            //else {
+            //    msg = xmlHttpRequest.responseText;
+            //}
             viewModel.indicatorVisible(false);
             ServerError(xmlHttpRequest.responseText);
         }
@@ -488,13 +485,16 @@ function GetUserRoles(u) {
         type: 'POST',
         data: postData,
         url: url,
-        async: false,
         cache: false,
         success: function (data, textStatus) {
             asRoles = [];
             for (var i = 0; i < data.length; i++) {
                 asRoles.push(data[i].ROLEID);
             }
+
+            var view = "Dash";
+            var option = { root: true };
+            Mobile.app.navigate(view, option);
         },
         error: function (xmlHttpRequest, textStatus, errorThrown) {
             ServerError(xmlHttpRequest.responseText);
