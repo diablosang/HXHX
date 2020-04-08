@@ -10,7 +10,7 @@ $(function () {
     DevExpress.devices.current({ platform: "generic" });
 
     $(document).on("deviceready", function () {
-        
+        $.support.cors = true;
         StatusBar.backgroundColorByHexString("#4a7087");
 
         navigator.splashscreen.hide();
