@@ -401,38 +401,54 @@ function Logon(viewModel) {
     var url = serviceURL + "/Api/Asapment/Logon2";
     var success = false;
 
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: postData,
-        cache: false,
-        success: function (data, textStatus) {
+    $.post(url, postData,
+        function (result) {
             sessionStorage.removeItem("username");
             sessionStorage.setItem("username", u);
             var localStorage = window.localStorage;
             localStorage.setItem("username", u);
             localStorage.setItem("password", p);
-            
+
             GetUserList(u);
             GetUserRoles(u);
-
             viewModel.indicatorVisible(false);
-        },
-        error: function (xmlHttpRequest, textStatus, errorThrown) {
-            
-            //ServerError(url);
-            var msg = url + String(xmlHttpRequest.responseText) + String(xmlHttpRequest.status) + String(xmlHttpRequest.statusText) + String(textStatus) + String(errorThrown);
-            $("#debugMsg").text(msg);
-            if (xmlHttpRequest.responseText == null || xmlHttpRequest.responseText == "") {
-                msg = "error, " + url;
-            }
-            else {
-                msg = xmlHttpRequest.responseText;
-            }
-            viewModel.indicatorVisible(false);
-            //ServerError(xmlHttpRequest.responseText);
         }
+    ).fail(function (xmlHttpRequest, textStatus, errorThrown) {
+        ServerError(xmlHttpRequest.responseText);
     });
+
+    //$.ajax({
+    //    type: 'POST',
+    //    url: url,
+    //    data: postData,
+    //    cache: false,
+    //    success: function (data, textStatus) {
+    //        sessionStorage.removeItem("username");
+    //        sessionStorage.setItem("username", u);
+    //        var localStorage = window.localStorage;
+    //        localStorage.setItem("username", u);
+    //        localStorage.setItem("password", p);
+            
+    //        GetUserList(u);
+    //        GetUserRoles(u);
+
+    //        viewModel.indicatorVisible(false);
+    //    },
+    //    error: function (xmlHttpRequest, textStatus, errorThrown) {
+            
+    //        //ServerError(url);
+    //        var msg = url + String(xmlHttpRequest.responseText) + String(xmlHttpRequest.status) + String(xmlHttpRequest.statusText) + String(textStatus) + String(errorThrown);
+    //        $("#debugMsg").text(msg);
+    //        if (xmlHttpRequest.responseText == null || xmlHttpRequest.responseText == "") {
+    //            msg = "error, " + url;
+    //        }
+    //        else {
+    //            msg = xmlHttpRequest.responseText;
+    //        }
+    //        viewModel.indicatorVisible(false);
+    //        //ServerError(xmlHttpRequest.responseText);
+    //    }
+    //});
 
     return success;
 }
