@@ -420,17 +420,17 @@ function Logon(viewModel) {
         },
         error: function (xmlHttpRequest, textStatus, errorThrown) {
             
-            ////ServerError(url);
-            //var msg = url + String(xmlHttpRequest.responseText) + String(xmlHttpRequest.status) + String(xmlHttpRequest.statusText) + String(textStatus) + String(errorThrown);
-            //$("#debugMsg").text(msg);
-            //if (xmlHttpRequest.responseText == null || xmlHttpRequest.responseText == "") {
-            //    msg = "error, " + url;
-            //}
-            //else {
-            //    msg = xmlHttpRequest.responseText;
-            //}
+            //ServerError(url);
+            var msg = url + String(xmlHttpRequest.responseText) + String(xmlHttpRequest.status) + String(xmlHttpRequest.statusText) + String(textStatus) + String(errorThrown);
+            $("#debugMsg").text(msg);
+            if (xmlHttpRequest.responseText == null || xmlHttpRequest.responseText == "") {
+                msg = "error, " + url;
+            }
+            else {
+                msg = xmlHttpRequest.responseText;
+            }
             viewModel.indicatorVisible(false);
-            ServerError(xmlHttpRequest.responseText);
+            //ServerError(xmlHttpRequest.responseText);
         }
     });
 
